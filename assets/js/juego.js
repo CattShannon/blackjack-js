@@ -57,6 +57,7 @@ const createDeck = () => {
 };
 
 const startNewGame = () => {
+    console.clear();
     divPlayerCards.innerHTML = '';
     divIACards.innerHTML = '';
     playerScore = 0;
