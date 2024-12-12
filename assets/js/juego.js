@@ -66,7 +66,6 @@ const startNewGame = () => {
     smallPlayerScore.innerText = '0'
     smallIAScore.innerText = '0'
     IAWinningThreshold = getIAWinningThreshold();
-    console.log(`Winning threshold for this match is ${IAWinningThreshold}`);
 };
 
 const takeACard = () => {
@@ -101,8 +100,6 @@ const executeTurn = () => {
 };
 
 const displayTurnResult = (divCards, smallScore, htmlNewCardImage, actualScore) => {
-    console.log('displaying card ', htmlNewCardImage.src);
-
     divCards.append(htmlNewCardImage);
     smallScore.innerText = `${actualScore}`
 }
@@ -134,9 +131,6 @@ const playIATurn = () => {
         } else {
             temporaryIAScore = IAScore;
         }
-        
-        console.log({temporaryIAScore, IAScore, turnResult});
-
     } while (IAStillPlaying || deck.length < 1);
 
     console.warn('La computadora ha finalizado su turno.')
@@ -146,10 +140,12 @@ const checkWinner = () => {
     const finalPlayerScore = WINNING_SCORE - playerScore;
     const finalIAScore = WINNING_SCORE - IAScore;
 
-    (finalPlayerScore < 0 || finalIAScore < finalPlayerScore) ? console.warn('Computadora gana')
-        : (finalPlayerScore === finalIAScore)
-            ? console.warn('Empate')
-            : console.warn('Has ganado');
+    setTimeout(() => {
+        (finalPlayerScore < 0 || finalIAScore < finalPlayerScore) ? alert('Computadora gana')
+            : (finalPlayerScore === finalIAScore)
+                ? alert('Empate')
+                : alert('Has ganado');
+    }, 1000);
 };
 
 const stopPlayerTurn = () => {
